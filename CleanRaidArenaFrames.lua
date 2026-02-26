@@ -1,8 +1,12 @@
--- [apply gradient depth overlay and clean arena frame accessories]
+-- Apply gradient depth overlay on raid healthbars and clean arena frame accessories
+
+-- Create vertical gradient colors for healthbar depth effect
 
 local GRADIENT_ALPHA = 0.25
 local TOP_COLOR = CreateColor(0, 0, 0, GRADIENT_ALPHA)
 local BOTTOM_COLOR = CreateColor(0, 0, 0, 0)
+
+-- Add gradient texture to unit frame healthbars to create visual depth
 
 local function ApplyHealthBarGradient(frame)
     if not frame or not frame.healthBar then return end
@@ -15,21 +19,27 @@ local function ApplyHealthBarGradient(frame)
     healthBar.cleanGradient = gradient
 end
 
+-- Hook frame setup functions to apply gradient to all raid and arena frames
+
 hooksecurefunc("DefaultCompactUnitFrameSetup", ApplyHealthBarGradient)
 hooksecurefunc("DefaultCompactMiniFrameSetup", ApplyHealthBarGradient)
 
--- [reposition arena accessories and hide casting bar after each layout update]
+-- Configure arena frame accessories positioning and visibility
 
 local ACCESSORY_SIZE = 40
+
+-- Reposition arena accessories and hide casting bar for cleaner appearance
 
 local function AdjustArenaMember(memberFrame)
     if not memberFrame then return end
 
+    -- Hide casting bar by setting alpha to transparent
     local castingBar = memberFrame.CastingBarFrame
     if castingBar then
         castingBar:SetAlpha(0)
     end
 
+    -- Position CC remover frame to the right of member frame
     local ccRemover = memberFrame.CcRemoverFrame
     if ccRemover then
         ccRemover:SetSize(ACCESSORY_SIZE, ACCESSORY_SIZE)
@@ -37,6 +47,7 @@ local function AdjustArenaMember(memberFrame)
         ccRemover:SetPoint("TOPLEFT", memberFrame, "TOPRIGHT", 2, 0)
     end
 
+    -- Position debuff frame to the left of member frame
     local debuffFrame = memberFrame.DebuffFrame
     if debuffFrame then
         debuffFrame:SetSize(ACCESSORY_SIZE, ACCESSORY_SIZE)
@@ -44,6 +55,7 @@ local function AdjustArenaMember(memberFrame)
         debuffFrame:SetPoint("TOPRIGHT", memberFrame, "TOPLEFT", -2, 0)
     end
 
+    -- Position diminish tray below and left of member frame
     local tray = memberFrame.SpellDiminishStatusTray
     if tray then
         tray:ClearAllPoints()
@@ -51,7 +63,7 @@ local function AdjustArenaMember(memberFrame)
     end
 end
 
--- [hook the actual frame instance because Mixin copies the original method before addon hooks apply]
+-- Hook arena frame instance directly because mixin hooks fail after frame creation
 
 local function SetupArenaHook()
     if not CompactArenaFrame or CompactArenaFrame.cleanArenaHooked then return end
@@ -62,6 +74,8 @@ local function SetupArenaHook()
         end
     end)
 end
+
+-- Apply arena hooks immediately and on frame generation
 
 SetupArenaHook()
 
