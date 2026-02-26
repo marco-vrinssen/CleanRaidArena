@@ -1,0 +1,7 @@
+## Interface: 120000
+## Title: Clean Raid Arena Frames
+## Notes: Gradient overlay on raid healthbars, clean arena frame accessories
+## Author: MIYANKO
+## Version: 1.0.0
+
+CleanRaidArenaFrames.lua
