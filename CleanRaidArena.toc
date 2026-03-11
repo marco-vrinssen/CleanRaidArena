@@ -5,11 +5,8 @@
 ## Version: 1.1.0
 ## OptionalDeps: LibStub, LibCustomGlow-1.0
 
-# Libraries
-Libs\LibStub\LibStub.lua
-Libs\LibCustomGlow-1.0\LibCustomGlow-1.0.lua
+## Dependencies: Blizzard_ActionBar
 
-# Addon Files
-HealthBarGradient.lua
-RaidFrameAuras.lua
-ArenaFrameAdjustments.lua
+ArenaElements.lua
+RaidAuras.lua
+RaidHealthbar.lua
