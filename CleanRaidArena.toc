@@ -1,9 +1,8 @@
 ## Interface: 120000
 ## Title: Clean Raid Arena
-## Notes: Gradient healthbars, healer buff glow, clean arena accessories
+## Notes: Gradient healthbars, healer buff glow, clean arena elements.
 ## Author: MIYANKO
 ## Version: 1.1.0
-## OptionalDeps: LibStub, LibCustomGlow-1.0
 
 ## Dependencies: Blizzard_ActionBar
 
